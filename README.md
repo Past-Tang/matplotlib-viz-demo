@@ -27,10 +27,10 @@ Matplotlib Viz Demo 是一组基于 Matplotlib 和 Pandas 的数据可视化脚�
 ## 功能特性
 
 - **Excel 数据读取** -- 使用 Pandas 直接读取 `.xlsx` 考勤数据文件，自动解析日期和时间列
-- **全员总览图** (`0.py`) -- 在一张大图上绘制所有教师的签退时间折线，支持按姓名分组着色
-- **个人独立子图** (`1.py`) -- 为每位教师生成独立子图，每人一行，支持自动分页（每页 60 人）
-- **签到时间分析** (`3.py`, `4.py`) -- 与签退分析对称，展示上班签到时间趋势
-- **快速预览** (`数据可视化.py`) -- 简化版脚本，快速绘制单人签到时间折线图
+- **全员总览图** (`signout_overview.py`) -- 在一张大图上绘制所有教师的签退时间折线，支持按姓名分组着色
+- **个人独立子图** (`signout_individual.py`) -- 为每位教师生成独立子图，每人一行，支持自动分页（每页 60 人）
+- **签到时间分析** (`signin_overview.py`, `signin_individual.py`) -- 与签退分析对称，展示上班签到时间趋势
+- **快速预览** (`quick_preview.py`) -- 简化版脚本，快速绘制单人签到时间折线图
 - **时间轴格式化** -- 自定义 Y 轴时间格式化器，将数值转换为 `HH:MM` 格式显示
 - **中文支持** -- 配置 SimHei 字体，完美支持中文标题、标签和图例
 - **自动布局** -- `autofmt_xdate()` 自动旋转日期标签，`tight_layout()` 防止子图重叠
@@ -58,19 +58,19 @@ Matplotlib Viz Demo 是一组基于 Matplotlib 和 Pandas 的数据可视化脚�
 
 ```bash
 # 全员签退时间总览（一张大图）
-python 0.py
+python signout_overview.py
 
 # 每位教师独立签退时间子图
-python 1.py
+python signout_individual.py
 
 # 全员签到时间总览
-python 3.py
+python signin_overview.py
 
 # 每位教师独立签到时间子图
-python 4.py
+python signin_individual.py
 
 # 快速预览（简化版）
-python 数据可视化.py
+python quick_preview.py
 ```
 
 ## 配置说明
@@ -91,23 +91,23 @@ plt.rcParams['font.sans-serif'] = ['SimHei']
 
 | 脚本 | 默认尺寸 | 说明 |
 |:---|:---|:---|
-| `0.py` / `3.py` | `(17, 18)` | 全员总览大图 |
-| `1.py` / `4.py` | `(15, 5*N)` | N 为教师数量，每人 5 英寸高 |
-| `数据可视化.py` | `(12, 6)` | 快速预览小图 |
+| `signout_overview.py` / `signin_overview.py` | `(17, 18)` | 全员总览大图 |
+| `signout_individual.py` / `signin_individual.py` | `(15, 5*N)` | N 为教师数量，每人 5 英寸高 |
+| `quick_preview.py` | `(12, 6)` | 快速预览小图 |
 
 ### 分页设置
 
-`1.py` 和 `4.py` 中可调整 `teachers_per_figure` 参数（默认 60），控制每页显示的教师数量。
+`signout_individual.py` 和 `signin_individual.py` 中可调整 `teachers_per_figure` 参数（默认 60），控制每页显示的教师数量。
 
 ## 项目结构
 
 ```
 matplotlib-viz-demo/
-├── 0.py                 # 全员签退时间总览折线图
-├── 1.py                 # 每位教师独立签退时间子图
-├── 3.py                 # 全员签到时间总览折线图
-├── 4.py                 # 每位教师独立签到时间子图
-├── 数据可视化.py          # 快速预览脚本
+├── signout_overview.py    # 全员签退时间总览折线图
+├── signout_individual.py  # 每位教师独立签退时间子图
+├── signin_overview.py     # 全员签到时间总览折线图
+├── signin_individual.py   # 每位教师独立签到时间子图
+├── quick_preview.py       # 快速预览脚本
 ├── W.xlsx               # 考勤数据源文件
 ├── 数据样本.xlsx          # 备用数据样本
 ├── myplot.png           # 示例输出图片
